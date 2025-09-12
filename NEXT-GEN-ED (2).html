@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next-Gen-ED</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            line-height: 1.6;
+            color: #374151;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* General Styles */
+        .section-content {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-desc {
+            color: #6b7280;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .back-btn {
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+        
+        .back-btn:hover {
+            background: #1d4ed8;
+        }
+        
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem 0;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .logo-text p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .status-indicator {
+            width: 0.75rem;
+            height: 0.75rem;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-indicator.offline {
+            background: #ef4444;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .profile-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .profile-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 2rem 0;
+        }
+        
+        /* Welcome Section */
+        .welcome-section {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .welcome-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        
+        .welcome-text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .welcome-text p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+        
+        .progress-stats {
+            text-align: right;
+        }
+        
+        .progress-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .progress-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .progress-bar {
+            background: #e5e7eb;
+            border-radius: 9999px;
+            height: 0.75rem;
+        }
+        
+        .progress-fill {
+            background: #2563eb;
+            height: 100%;
+            border-radius: 9999px;
+            width: 75%;
+            transition: width 0.5s ease-in-out;
+        }
+        
+        /* Quick Actions Grid */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .action-card {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .action-card.green { background: linear-gradient(45deg, #10b981 0%, #059669 100%); }
+        .action-card.blue { background: linear-gradient(45deg, #3b82f6 0%, #2563eb 100%); }
+        .action-card.orange { background: linear-gradient(45deg, #f59e0b 0%, #d97706 100%); }
+        .action-card.purple { background: linear-gradient(45deg, #8b5cf6 0%, #7c3aed 100%); }
+        .action-card.profile { background: linear-gradient(45deg, #5b21b6 0%, #4c1d95 100%); }
+        
+        .action-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        
+        .action-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .action-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Subjects Grid */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .subject-card {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subject-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .subject-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.25rem;
+            font-size: 1.75rem;
+        }
+        
+        .subject-icon.blue { background: #dbeafe; }
+        .subject-icon.green { background: #dcfce7; }
+        .subject-icon.purple { background: #f3e8ff; }
+        .subject-icon.orange { background: #fed7aa; }
+        .subject-icon.red { background: #fee2e2; }
+        .subject-icon.indigo { background: #e0e7ff; }
+        
+        .subject-info h3 {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+        
+        .subject-info p {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .subject-progress {
+            margin-bottom: 0.75rem;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .subject-progress .progress-bar {
+            height: 0.6rem;
+            margin-top: 0;
+        }
+        
+        .progress-fill.blue { background: #3b82f6; }
+        .progress-fill.green { background: #10b981; }
+        .progress-fill.purple { background: #8b5cf6; }
+        .progress-fill.orange { background: #f59e0b; }
+        .progress-fill.red { background: #ef4444; }
+        .progress-fill.indigo { background: #6366f1; }
+        
+        .subject-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        /* Announcements */
+        .announcements {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .announcements h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        
+        .announcement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .announcement-item.blue { background: #eff6ff; }
+        .announcement-item.green { background: #f0fdf4; }
+        
+        .announcement-dot {
+            width: 0.6rem;
+            height: 0.6rem;
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+        
+        .announcement-dot.blue { background: #3b82f6; }
+        .announcement-dot.green { background: #10b981; }
+        
+        .announcement-content p {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+        
+        .announcement-time {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+        
+        .modal.show {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin: 1rem;
+            max-width: 48rem;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: #374151;
+        }
+        
+        .modal-body {
+            margin-bottom: 2rem;
+        }
+        
+        .lesson-item {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            transition: background-color 0.2s;
+        }
+        
+        .lesson-item:hover {
+            background-color: #f3f4f6;
+        }
+
+        .lesson-title-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: #1f2937;
+            cursor: pointer;
+        }
+        
+        .lesson-status {
+            font-weight: 600;
+        }
+        
+        .lesson-status.completed { color: #059669; }
+        .lesson-status.progress { color: #ea580c; }
+        .lesson-status.not-started { color: #6b7280; }
+        
+        .lesson-details {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #d1d5db;
+        }
+        
+        .lesson-details.open {
+            display: block;
+        }
+        
+        .lesson-details p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .lesson-details h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .lesson-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .lesson-details li {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+        
+        .btn-success {
+            background: #059669;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #047857;
+        }
+        
+        /* Section Content Details */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .content-item {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: transform 0.2s;
+        }
+        
+        .content-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .content-item h3 {
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .content-item p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 0.75rem;
+        }
+        
+        .status-downloaded {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #059669;
+        }
+        
+        .live-class-item {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .class-info h3 {
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+        
+        .class-info p {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .join-btn, .reminder-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .join-btn {
+            background: #059669;
+        }
+        
+        .join-btn:hover {
+            background: #047857;
+        }
+        
+        .reminder-btn {
+            background: #2563eb;
+        }
+        
+        .reminder-btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .assignment-item {
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: box-shadow 0.3s;
+        }
+        
+        .assignment-item.pending {
+            border: 1px solid #fbd38d;
+            background: #fffbeb;
+        }
+        
+        .assignment-item.completed {
+            border: 1px solid #bbf7d0;
+            background: #f0fdf4;
+        }
+        
+        .assignment-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .assignment-info h3 {
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+        
+        .assignment-info p {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .status-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.pending {
+            background: #fbd38d;
+            color: #9a3412;
+        }
+        
+        .status-badge.completed {
+            background: #bbf7d0;
+            color: #166534;
+        }
+        
+        .start-btn {
+            background: #ea580c;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .start-btn:hover {
+            background: #c2410c;
+        }
+        
+        .community-post {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .avatar {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+        }
+        
+        .avatar.blue { background: #3b82f6; }
+        .avatar.green { background: #10b981; }
+        .avatar.teacher { background: #8b5cf6; }
+        
+        .post-content {
+            flex: 1;
+        }
+        
+        .post-content h4 {
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+        
+        .post-content p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 0.75rem;
+        }
+        
+        .post-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+        
+        .reply-btn {
+            background: none;
+            border: none;
+            color: #2563eb;
+            cursor: pointer;
+            padding: 0;
+            font-weight: 600;
+        }
+        
+        .reply-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* Profile Page */
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-avatar {
+            width: 8rem;
+            height: 8rem;
+            border-radius: 50%;
+            background: #e0e7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2563eb;
+        }
+
+        .profile-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-info p {
+            font-size: 1rem;
+            color: #6b7280;
+        }
+        
+        .profile-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .profile-settings {
+            margin-top: 2rem;
+        }
+
+        .profile-settings h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        /* Login Page Styles */
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: #f0f4f8;
+            padding: 2rem;
+            box-sizing: border-box;
+            display: none;
+        }
+        
+        .login-container.active {
+            display: flex;
+        }
+        
+        .main-content-container {
+            display: none;
+        }
+        
+        .main-content-container.active {
+            display: block;
+        }
+        
+        .login-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+        
+        .login-logo {
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .login-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .login-desc {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .error-message {
+            color: #ef4444;
+            font-size: 0.9rem;
+            margin-top: -0.5rem;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .welcome-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                margin: 0.5rem;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+
+            .header, .welcome-section, .section-content {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="login-container" class="login-container">
+        <div class="login-card">
+            <div class="logo-section login-logo">
+                <div class="logo-icon"><span>📚</span></div>
+                <div class="logo-text">
+                    <h1>Next-Gen-ED</h1>
+                    <p>Digital Education for Rural Students</p>
+                </div>
+            </div>
+            <h2 class="login-title">Student & Teacher Login</h2>
+            <p class="login-desc">Enter your credentials to access the platform.</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <div id="login-error-message" class="error-message"></div>
+                <button type="submit" class="login-btn">Log In</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="main-content-container" class="main-content-container">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo-icon">
+                            <span>📚</span>
+                        </div>
+                        <div class="logo-text">
+                            <h1>Next-Gen-ED</h1>
+                            <p>Digital Education for Rural Students</p>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <div class="connection-status">
+                            <div id="statusIndicator" class="status-indicator"></div>
+                            <span id="statusText">Online</span>
+                        </div>
+                        <button class="profile-btn" onclick="openSection('profile')">Profile</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <main class="main-content">
+            <div class="container">
+                <div class="welcome-section">
+                    <div class="welcome-header">
+                        <div class="welcome-text">
+                            <h2 id="welcomeTitle">Welcome back, Student!</h2>
+                            <p>Continue your learning journey with offline-friendly content</p>
+                        </div>
+                        <div class="progress-stats">
+                            <div class="progress-number" id="overallProgress">75%</div>
+                            <div class="progress-label">Overall Progress</div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="overallProgressBar"></div>
+                    </div>
+                </div>
+    
+                <div class="quick-actions">
+                    <button class="action-card green" onclick="openSection('offline')">
+                        <span class="action-icon">📱</span>
+                        <div class="action-title">Offline Content</div>
+                        <div class="action-desc">Study without internet</div>
+                    </button>
+                    <button class="action-card blue" onclick="openSection('live')">
+                        <span class="action-icon">🎥</span>
+                        <div class="action-title">Live Classes</div>
+                        <div class="action-desc">Join virtual sessions</div>
+                    </button>
+                    <button class="action-card orange" onclick="openSection('assignments')">
+                        <span class="action-icon">📝</span>
+                        <div class="action-title">Assignments</div>
+                        <div class="action-desc">Submit your work</div>
+                    </button>
+                    <button class="action-card purple" onclick="openSection('community')">
+                        <span class="action-icon">👥</span>
+                        <div class="action-title">Community</div>
+                        <div class="action-desc">Connect with peers</div>
+                    </button>
+                </div>
+    
+                <div id="contentArea">
+                    <div id="subjectsGrid" class="subjects-grid">
+                        </div>
+                </div>
+    
+                <div class="announcements">
+                    <h3>📢 Announcements</h3>
+                    <div class="announcement-item blue">
+                        <div class="announcement-dot blue"></div>
+                        <div class="announcement-content">
+                            <p>New offline content available for Mathematics</p>
+                            <div class="announcement-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="announcement-item green">
+                        <div class="announcement-dot green"></div>
+                        <div class="announcement-content">
+                            <p>Live Science class scheduled for tomorrow at 10 AM</p>
+                            <div class="announcement-time">1 day ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <div id="subjectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle" class="modal-title"></h3>
+                <button class="close-btn" onclick="closeModal()">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="modalContent" class="modal-body">
+                </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="startLesson()">Start Learning</button>
+                <button class="btn btn-success" onclick="downloadOffline()">📱 Download Offline</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userRole = localStorage.getItem('userRole');
+
+            const loginContainer = document.getElementById('login-container');
+            const mainContentContainer = document.getElementById('main-content-container');
+            const loginForm = document.getElementById('loginForm');
+            const loginErrorMessage = document.getElementById('login-error-message');
+            const profileBtn = document.querySelector('.profile-btn');
+            const welcomeTitle = document.getElementById('welcomeTitle');
+            const subjectsGrid = document.getElementById('subjectsGrid');
+            const contentArea = document.getElementById('contentArea');
+
+            const users = {
+                'student': { password: 'student123', role: 'student', name: 'Rahul Sharma', id: 'STD101' },
+                'teacher': { password: 'teacher123', role: 'teacher', name: 'Mrs. Priya', id: 'TCH201' }
+            };
+
+            const subjectsData = {
+                'math': {
+                    title: 'Mathematics',
+                    icon: '🔢',
+                    progress: 80,
+                    lessons: 15,
+                    color: 'blue',
+                    offline: true,
+                    lessonsList: [
+                        { 
+                            name: 'Chapter 1: Algebra Basics', 
+                            status: 'Completed',
+                            summary: 'This lesson covers the fundamental concepts of algebra, including variables, expressions, and basic equations. It is essential for building a strong foundation.',
+                            teacherNotes: 'Remember to practice solving for "x" using different methods. The quiz at the end of this chapter is very important.',
+                            resources: ['Video: Intro to Algebra', 'PDF: Algebra Workbook']
+                        },
+                        { 
+                            name: 'Chapter 2: Quadratic Equations', 
+                            status: 'In Progress',
+                            summary: 'Learn to solve quadratic equations using factoring, completing the square, and the quadratic formula. This is a key topic for advanced mathematics.',
+                            teacherNotes: 'Pay close attention to the formula and remember the plus/minus sign. The video tutorial explains this in great detail.',
+                            resources: ['Video: The Quadratic Formula', 'PDF: Practice Problems']
+                        },
+                        { 
+                            name: 'Chapter 3: Geometry', 
+                            status: 'Not Started',
+                            summary: 'Explore the world of shapes and space, including lines, angles, and polygons. Understand how to calculate area and perimeter.',
+                            teacherNotes: 'Focus on visualizing the shapes in 3D. The online simulations can be very helpful for this chapter.',
+                            resources: ['Interactive Simulation: Angles & Lines', 'PDF: Geometry Flashcards']
+                        },
+                    ]
+                },
+                'science': {
+                    title: 'Science',
+                    icon: '🔬',
+                    progress: 65,
+                    lessons: 22,
+                    color: 'green',
+                    offline: true,
+                    lessonsList: [
+                        {
+                            name: 'Physics: Motion & Force',
+                            status: 'Completed',
+                            summary: 'Understand the laws of motion and how forces affect objects. Learn about concepts like velocity, acceleration, and gravity.',
+                            teacherNotes: 'The concepts of force and motion are interconnected. Try to apply these principles to real-world examples.',
+                            resources: ['Video: Newton\'s Laws', 'Article: The Physics of everyday life']
+                        },
+                        {
+                            name: 'Chemistry: Acids & Bases',
+                            status: 'In Progress',
+                            summary: 'Learn the properties of acids and bases, the pH scale, and different types of chemical reactions.',
+                            teacherNotes: 'This chapter requires careful observation of lab experiments. Pay attention to safety instructions in the video.',
+                            resources: ['Video: pH Scale Experiment', 'Quiz: Acids & Bases']
+                        },
+                        {
+                            name: 'Biology: Cell Structure',
+                            status: 'In Progress',
+                            summary: 'Dive into the basic unit of life. Identify and understand the function of different organelles within a cell.',
+                            teacherNotes: 'Study the diagrams carefully. The quiz will test your knowledge of the different parts of a plant and animal cell.',
+                            resources: ['Interactive Diagram: Plant & Animal Cell', 'Video: A Tour of the Cell']
+                        },
+                    ]
+                },
+                'english': {
+                    title: 'English',
+                    icon: '📖',
+                    progress: 90,
+                    lessons: 18,
+                    color: 'purple',
+                    offline: true,
+                    lessonsList: [
+                        {
+                            name: 'Grammar: Parts of Speech',
+                            status: 'Completed',
+                            summary: 'Master the building blocks of the English language: nouns, verbs, adjectives, and adverbs. Essential for proper writing.',
+                            teacherNotes: 'Practice identifying the parts of speech in different sentences. This is a fundamental skill.',
+                            resources: ['Quiz: Identify the Part of Speech', 'PDF: Grammar Rules Cheatsheet']
+                        },
+                        {
+                            name: 'Literature: The Great Gatsby',
+                            status: 'Completed',
+                            summary: 'Analyze F. Scott Fitzgerald\'s classic novel, focusing on themes of wealth, love, and the American Dream.',
+                            teacherNotes: 'Think critically about the symbolism in the novel, especially the green light and the eyes of Dr. T.J. Eckleburg.',
+                            resources: ['Discussion Forum: The Great Gatsby', 'Video: Literary Analysis of Gatsby']
+                        },
+                        {
+                            name: 'Writing: Essay Structure',
+                            status: 'Completed',
+                            summary: 'Learn how to write a well-structured essay with a clear thesis, body paragraphs, and a strong conclusion.',
+                            teacherNotes: 'Use a template to plan your first essay. Planning is the most crucial step in the writing process.',
+                            resources: ['Template: Essay Outline', 'Video: Writing a Thesis Statement']
+                        },
+                    ]
+                },
+                'social': {
+                    title: 'Social Studies',
+                    icon: '🌍',
+                    progress: 55,
+                    lessons: 25,
+                    color: 'red',
+                    offline: true,
+                    lessonsList: [
+                        {
+                            name: 'History: Indian Independence',
+                            status: 'In Progress',
+                            summary: 'Learn about the key events and figures that led to India\'s independence. Understand the impact of Mahatma Gandhi and other leaders.',
+                            teacherNotes: 'Create a timeline of the key events to help you remember the dates and their sequence.',
+                            resources: ['Video: Freedom Fighters of India', 'PDF: Timeline of the Independence Movement']
+                        },
+                        {
+                            name: 'Geography: Rivers of India',
+                            status: 'Not Started',
+                            summary: 'Study the major river systems of India and their importance to the country\'s agriculture, economy, and culture.',
+                            teacherNotes: 'Use the interactive map to trace the path of each river and identify the major cities along its banks.',
+                            resources: ['Interactive Map: Indian Rivers', 'Quiz: Rivers of India']
+                        }
+                    ]
+                },
+                'computer': {
+                    title: 'Computer Science',
+                    icon: '💻',
+                    progress: 40,
+                    lessons: 12,
+                    color: 'indigo',
+                    offline: true,
+                    lessonsList: [
+                        {
+                            name: 'Basics: Components of a PC',
+                            status: 'Completed',
+                            summary: 'Identify the essential components of a computer, including the CPU, motherboard, RAM, and hard drive.',
+                            teacherNotes: 'It is important to understand what each component does and how they work together.',
+                            resources: ['Video: How a Computer Works', 'Quiz: Computer Parts']
+                        },
+                        {
+                            name: 'Programming: Python Basics',
+                            status: 'Not Started',
+                            summary: 'Get started with the Python programming language. Learn to write your first "Hello, World!" program and understand basic syntax.',
+                            teacherNotes: 'Follow the interactive tutorial step-by-step. Don\'t be afraid to make mistakes—that\'s how you learn!',
+                            resources: ['Interactive Tutorial: Your First Python Program', 'PDF: Python Cheat Sheet']
+                        }
+                    ]
+                }
+            };
+
+            function renderSubjects() {
+                subjectsGrid.innerHTML = Object.keys(subjectsData).map(subjectKey => {
+                    const subject = subjectsData[subjectKey];
+                    return `
+                        <div class="subject-card" onclick="openSubject('${subjectKey}')">
+                            <div class="subject-header">
+                                <div class="subject-icon ${subject.color}">
+                                    <span>${subject.icon}</span>
+                                </div>
+                                <div class="subject-info">
+                                    <h3>${subject.title}</h3>
+                                    <p>${subject.title === 'Hindi' ? 'भाषा और साहित्य' : (subject.title === 'Social Studies' ? 'History, Geography, Civics' : (subject.title === 'Computer Science' ? 'Basic Programming' : (subject.title === 'English' ? 'Grammar & Literature' : (subject.title === 'Science' ? 'Physics, Chemistry, Biology' : 'Class 8-12'))))}</p>
+                                </div>
+                            </div>
+                            <div class="subject-progress">
+                                <div class="progress-header">
+                                    <span>Progress</span>
+                                    <span>${subject.progress}%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill ${subject.color}" style="width: ${subject.progress}%"></div>
+                                </div>
+                            </div>
+                            <div class="subject-footer">
+                                <span>📱 Available Offline</span>
+                                <span>${subject.lessons} lessons</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            function calculateOverallProgress() {
+                const totalProgress = Object.values(subjectsData).reduce((sum, subject) => sum + subject.progress, 0);
+                const averageProgress = totalProgress / Object.values(subjectsData).length;
+                
+                const overallProgressElement = document.getElementById('overallProgress');
+                const overallProgressBarElement = document.getElementById('overallProgressBar');
+
+                overallProgressElement.textContent = `${Math.round(averageProgress)}%`;
+                overallProgressBarElement.style.width = `${averageProgress}%`;
+            }
+
+            function showMainContent(role) {
+                loginContainer.classList.remove('active');
+                mainContentContainer.classList.add('active');
+                loginErrorMessage.style.display = 'none';
+
+                if (role === 'teacher') {
+                    profileBtn.textContent = 'Teacher Profile';
+                    welcomeTitle.textContent = 'Welcome back, Teacher!';
+                } else {
+                    profileBtn.textContent = 'Student Profile';
+                    welcomeTitle.textContent = 'Welcome back, Student!';
+                }
+                renderSubjects();
+                calculateOverallProgress();
+            }
+
+            function showLoginPage() {
+                mainContentContainer.classList.remove('active');
+                loginContainer.classList.add('active');
+            }
+
+            if (isLoggedIn) {
+                showMainContent(userRole);
+            } else {
+                showLoginPage();
+            }
+
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = document.getElementById('username').value.trim().toLowerCase();
+                const password = document.getElementById('password').value.trim();
+
+                if (users[username] && users[username].password === password) {
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('userRole', users[username].role);
+                    localStorage.setItem('userName', users[username].name);
+                    localStorage.setItem('userId', users[username].id);
+                    showMainContent(users[username].role);
+                } else {
+                    loginErrorMessage.textContent = 'Invalid username or password.';
+                    loginErrorMessage.style.display = 'block';
+                }
+            });
+
+            const currentUserName = localStorage.getItem('userName') || 'Student';
+            const currentUserId = localStorage.getItem('userId') || 'ID';
+            const currentUserRole = localStorage.getItem('userRole') || 'Student';
+
+            // All section-specific HTML is now contained within the JS function
+            function openSection(section) {
+                switch(section) {
+                    case 'profile':
+                        contentArea.innerHTML = `
+                            <div class="section-content">
+                                <h2 class="section-title">👤 My Profile</h2>
+                                <p class="section-desc">Manage your account and view personal statistics.</p>
+                                <div class="profile-info">
+                                    <div class="profile-avatar">${currentUserName.charAt(0)}</div>
+                                    <h3>${currentUserName}</h3>
+                                    <p>Student ID: ${currentUserId}</p>
+                                    <p>Role: ${currentUserRole}</p>
+                                </div>
+                                
+                                <h3 class="section-title">Learning Stats</h3>
+                                <div class="profile-stats-grid">
+                                    <div class="stat-card">
+                                        <h4>${Object.keys(subjectsData).length}</h4>
+                                        <p>Subjects Enrolled</p>
+                                    </div>
+                                    <div class="stat-card">
+                                        <h4>21</h4>
+                                        <p>Total Lessons Completed</p>
+                                    </div>
+                                    <div class="stat-card">
+                                        <h4>5+ hrs</h4>
+                                        <p>Learning Time This Week</p>
+                                    </div>
+                                </div>
+                                <button class="back-btn" onclick="showSubjects()">Back to Home</button>
+                            </div>
+                        `;
+                        break;
+                    case 'offline':
+                        contentArea.innerHTML = `
+                            <div class="section-content">
+                                <h2 class="section-title">📱 Offline Content</h2>
+                                <p class="section-desc">Access your downloaded lessons even without internet connection</p>
+                                <div class="content-grid">
+                                    <div class="content-item">
+                                        <h3>Mathematics - Algebra</h3>
+                                        <p>5 lessons • 2.3 MB</p>
+                                        <div class="status-downloaded">✓ Downloaded</div>
+                                    </div>
+                                    <div class="content-item">
+                                        <h3>Science - Physics</h3>
+                                        <p>8 lessons • 4.1 MB</p>
+                                        <div class="status-downloaded">✓ Downloaded</div>
+                                    </div>
+                                    <div class="content-item">
+                                        <h3>English - Literature</h3>
+                                        <p>3 lessons • 1.5 MB</p>
+                                        <div class="status-downloaded">✓ Downloaded</div>
+                                    </div>
+                                    <div class="content-item">
+                                        <h3>Computer Science - Basics</h3>
+                                        <p>2 lessons • 1.1 MB</p>
+                                        <div class="status-downloaded">✓ Downloaded</div>
+                                    </div>
+                                </div>
+                                <button class="back-btn" onclick="showSubjects()">Back to Home</button>
+                            </div>
+                        `;
+                        break;
+                    case 'live':
+                        contentArea.innerHTML = `
+                            <div class="section-content">
+                                <h2 class="section-title">🎥 Live Classes</h2>
+                                <p class="section-desc">Join interactive sessions with teachers and classmates</p>
+                                <div class="live-class-item">
+                                    <div class="class-info">
+                                        <h3>Mathematics - Quadratic Equations</h3>
+                                        <p>Today at 2:00 PM • Teacher: Mrs. Sharma</p>
+                                    </div>
+                                    <button class="join-btn">Join Now</button>
+                                </div>
+                                <div class="live-class-item">
+                                    <div class="class-info">
+                                        <h3>Science - Chemical Reactions</h3>
+                                        <p>Tomorrow at 10:00 AM • Teacher: Mr. Kumar</p>
+                                    </div>
+                                    <button class="reminder-btn">Set Reminder</button>
+                                </div>
+                                <div class="live-class-item">
+                                    <div class="class-info">
+                                        <h3>English - Poetry Analysis</h3>
+                                        <p>In 2 days at 4:00 PM • Teacher: Ms. Singh</p>
+                                    </div>
+                                    <button class="reminder-btn">Set Reminder</button>
+                                </div>
+                                <div class="live-class-item">
+                                    <div class="class-info">
+                                        <h3>Computer Science - Python Basics</h3>
+                                        <p>Next Tuesday at 3:30 PM • Teacher: Mr. Patel</p>
+                                    </div>
+                                    <button class="reminder-btn">Set Reminder</button>
+                                </div>
+                                <button class="back-btn" onclick="showSubjects()">Back to Home</button>
+                            </div>
+                        `;
+                        break;
+                    case 'assignments':
+                        contentArea.innerHTML = `
+                            <div class="section-content">
+                                <h2 class="section-title">📝 Assignments</h2>
+                                <p class="section-desc">Complete and submit your homework</p>
+                                <div class="assignment-item pending">
+                                    <div class="assignment-header">
+                                        <div class="assignment-info">
+                                            <h3>Mathematics Assignment #5</h3>
+                                            <p>Due: Tomorrow • 10 questions</p>
+                                        </div>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <button class="start-btn">Start Assignment</button>
+                                </div>
+                                <div class="assignment-item pending">
+                                    <div class="assignment-header">
+                                        <div class="assignment-info">
+                                            <h3>Social Studies Essay</h3>
+                                            <p>Due: Next week • 500 words</p>
+                                        </div>
+                                        <span class="status-badge pending">Pending</span>
+                                    </div>
+                                    <button class="start-btn">Start Assignment</button>
+                                </div>
+                                <div class="assignment-item completed">
+                                    <div class="assignment-header">
+                                        <div class="assignment-info">
+                                            <h3>Science Lab Report</h3>
+                                            <p>Submitted: Last Week • Grade: A</p>
+                                        </div>
+                                        <span class="status-badge completed">Completed</span>
+                                    </div>
+                                </div>
+                                <div class="assignment-item completed">
+                                    <div class="assignment-header">
+                                        <div class="assignment-info">
+                                            <h3>English Reading Comprehension</h3>
+                                            <p>Submitted: 3 days ago • Grade: B+</p>
+                                        </div>
+                                        <span class="status-badge completed">Completed</span>
+                                    </div>
+                                </div>
+                                <button class="back-btn" onclick="showSubjects()">Back to Home</button>
+                            </div>
+                        `;
+                        break;
+                    case 'community':
+                        contentArea.innerHTML = `
+                            <div class="section-content">
+                                <h2 class="section-title">👥 Community</h2>
+                                <p class="section-desc">Connect with fellow students and teachers</p>
+                                <div class="community-post">
+                                    <div class="post-header">
+                                        <div class="avatar blue">R</div>
+                                        <div class="post-content">
+                                            <h4>Rahul Sharma</h4>
+                                            <p>Can someone help me with the quadratic formula? I'm stuck on problem 3.</p>
+                                            <div class="post-actions">
+                                                <button class="reply-btn">Reply</button>
+                                                <span>2 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="community-post">
+                                    <div class="post-header">
+                                        <div class="avatar green">P</div>
+                                        <div class="post-content">
+                                            <h4>Priya Patel</h4>
+                                            <p>Great explanation in today's science class! 🧪 I finally understand the concept of density.</p>
+                                            <div class="post-actions">
+                                                <button class="reply-btn">Reply</button>
+                                                <span>5 hours ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="community-post">
+                                    <div class="post-header">
+                                        <div class="avatar teacher">T</div>
+                                        <div class="post-content">
+                                            <h4>Teacher S. Kumar</h4>
+                                            <p>Reminder: The live class on chemical reactions is scheduled for tomorrow at 10 AM. See you there!</p>
+                                            <div class="post-actions">
+                                                <button class="reply-btn">Reply</button>
+                                                <span>1 day ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="back-btn" onclick="showSubjects()">Back to Home</button>
+                            </div>
+                        `;
+                        break;
+                }
+            }
+    
+            function showSubjects() {
+                contentArea.innerHTML = '<div id="subjectsGrid" class="subjects-grid"></div>';
+                renderSubjects();
+            }
+    
+            function openSubject(subject) {
+                const modal = document.getElementById('subjectModal');
+                const title = document.getElementById('modalTitle');
+                const content = document.getElementById('modalContent');
+                
+                const subjectData = subjectsData[subject];
+                title.textContent = subjectData.icon + ' ' + subjectData.title;
+                
+                let lessonsHtml = subjectData.lessonsList.map((lesson, index) => {
+                    let statusClass;
+                    let statusText;
+                    if (lesson.status === 'Completed') {
+                        statusClass = 'completed';
+                        statusText = '✓ Completed';
+                    } else if (lesson.status === 'In Progress') {
+                        statusClass = 'progress';
+                        statusText = 'In Progress';
+                    } else {
+                        statusClass = 'not-started';
+                        statusText = 'Not Started';
+                    }
+
+                    const detailsHtml = `
+                        <div class="lesson-details" id="details-${subject}-${index}">
+                            <h4>Lesson Summary:</h4>
+                            <p>${lesson.summary}</p>
+                            <h4>Teacher's Notes:</h4>
+                            <p>${lesson.teacherNotes}</p>
+                            <h4>Resources:</h4>
+                            <ul>
+                                ${lesson.resources.map(res => `<li>${res}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+
+                    return `
+                        <div class="lesson-item" onclick="toggleLessonDetails('${subject}', ${index})">
+                            <div class="lesson-title-bar">
+                                <span>${lesson.name}</span>
+                                <span class="lesson-status ${statusClass}">${statusText}</span>
+                            </div>
+                            ${detailsHtml}
+                        </div>
+                    `;
+                }).join('');
+                
+                content.innerHTML = lessonsHtml;
+                
+                modal.classList.add('show');
+            }
+
+            function toggleLessonDetails(subject, index) {
+                const details = document.getElementById(`details-${subject}-${index}`);
+                details.classList.toggle('open');
+            }
+
+            function closeModal() {
+                const modal = document.getElementById('subjectModal');
+                modal.classList.remove('show');
+            }
+    
+            function startLesson() {
+                alert('Starting lesson... This would open the interactive lesson content!');
+                closeModal();
+            }
+    
+            function downloadOffline() {
+                alert('Downloading content for offline use... This would save lessons to local storage!');
+                closeModal();
+            }
+            
+            // Handle profile button click logic
+            document.querySelector('.profile-btn').addEventListener('click', () => {
+                const userConfirmation = confirm("Are you sure you want to log out?");
+                if (userConfirmation) {
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userRole');
+                    window.location.reload();
+                }
+            });
+
+            // Handle connection status
+            let isOnline = navigator.onLine;
+            function updateConnectionStatus() {
+                const indicator = document.getElementById('statusIndicator');
+                const text = document.getElementById('statusText');
+                if (isOnline) {
+                    indicator.className = 'status-indicator';
+                    text.textContent = 'Online';
+                } else {
+                    indicator.className = 'status-indicator offline';
+                    text.textContent = 'Offline Mode';
+                }
+            }
+    
+            window.addEventListener('online', () => {
+                isOnline = true;
+                updateConnectionStatus();
+            });
+    
+            window.addEventListener('offline', () => {
+                isOnline = false;
+                updateConnectionStatus();
+            });
+    
+            updateConnectionStatus();
+            
+            // Expose functions to global scope for HTML to access
+            window.openSection = openSection;
+            window.showSubjects = showSubjects;
+            window.openSubject = openSubject;
+            window.toggleLessonDetails = toggleLessonDetails;
+            window.closeModal = closeModal;
+            window.startLesson = startLesson;
+            window.downloadOffline = downloadOffline;
+        });
+    </script>
+</body>
+</html>
